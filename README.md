@@ -1,3 +1,5 @@
+# Early prototype for this idea:
+
 Here's a quick idea for a stateless PaaS on top of Github and docker swarm.
 
 You mark Github repos that you want to deploy to your Docker swarm with a certain tag, say "my-server".
