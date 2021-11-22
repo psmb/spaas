@@ -8,11 +8,12 @@ def deploy(name):
     filename = cacheDir + name + '.yml'
     subprocess.call(["docker", "stack", "deploy", name, "--compose-file=" + filename])
 
-user = 'psmb'
+users = ['psmb', 'dimaip']
+userQuery = ''.join(map(lambda user: "+user:" + user, users))
 topic = 'psmb-server'
 
 header={'Pragma': 'no-cache', 'User-Agent': 'Mozilla/5.0'}
-req = urllib.request.Request(url="https://api.github.com/search/repositories?q=topic:" + topic + "+user:" + user, headers=header)
+req = urllib.request.Request(url="https://api.github.com/search/repositories?q=topic:" + topic + userQuery, headers=header)
 with urllib.request.urlopen(req) as url:
     data = json.loads(url.read().decode())
     for repo in data['items']:
